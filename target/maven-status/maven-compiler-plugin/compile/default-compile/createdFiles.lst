@@ -1,1 +1,4 @@
+org/abiram/api/model/Person.class
 org/abiram/api/SpringApi.class
+org/abiram/api/repository/PersonRepository.class
+org/abiram/api/controller/PersonController.class

@@ -11,6 +11,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/person") // Base path for this controller
+@CrossOrigin(origins = "http://localhost:3000")
 public class PersonController {
 
     private static final Logger log = LoggerFactory.getLogger(PersonController.class);
