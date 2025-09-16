@@ -1,0 +1,30 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'build',
+        '-t', 'gcr.io/$PROJECT_ID/springboot-rest-api',
+        '.'
+      ]
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'push',
+        'gcr.io/$PROJECT_ID/springboot-rest-api'
+      ]
+
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      [
+        'run', 'deploy', 'springboot-rest-api',
+        '--image', 'gcr.io/$PROJECT_ID/springboot-rest-api',
+        '--platform', 'managed',
+        '--region', 'us-central1',   # change to your region
+        '--allow-unauthenticated',
+        '--port', '8080'
+      ]
+
+images:
+  - 'gcr.io/$PROJECT_ID/springboot-rest-api'
