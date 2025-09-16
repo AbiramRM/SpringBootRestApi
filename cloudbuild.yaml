@@ -1,30 +1,44 @@
+# cloudbuild.yaml
+
+# If needed, you can substitute values for project ID, region, etc.
+substitutions:
+  _SERVICE_NAME: "springboot-rest-api"
+  _REGION: "us-central1"    # change to your preferred region
+  _IMAGE: "springboot-rest-api"
+  _PORT: "8080"
+
 steps:
+  # 1. Build Docker image
   - name: 'gcr.io/cloud-builders/docker'
     args:
       [
         'build',
-        '-t', 'gcr.io/$PROJECT_ID/springboot-rest-api',
+        '-t',
+        'gcr.io/$PROJECT_ID/${_IMAGE}',
         '.'
       ]
 
+  # 2. Push Docker image to Container Registry
   - name: 'gcr.io/cloud-builders/docker'
     args:
       [
         'push',
-        'gcr.io/$PROJECT_ID/springboot-rest-api'
+        'gcr.io/$PROJECT_ID/${_IMAGE}'
       ]
 
+  # 3. Deploy to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
     args:
       [
-        'run', 'deploy', 'springboot-rest-api',
-        '--image', 'gcr.io/$PROJECT_ID/springboot-rest-api',
+        'run', 'deploy', '${_SERVICE_NAME}',
+        '--image', 'gcr.io/$PROJECT_ID/${_IMAGE}',
         '--platform', 'managed',
-        '--region', 'us-central1',   # change to your region
+        '--region', '${_REGION}',
         '--allow-unauthenticated',
-        '--port', '8080'
+        '--port', '${_PORT}'
       ]
 
+# Declare the image(s) built by this build — helps with tracking, etc.
 images:
-  - 'gcr.io/$PROJECT_ID/springboot-rest-api'
+  - 'gcr.io/$PROJECT_ID/${_IMAGE}'
