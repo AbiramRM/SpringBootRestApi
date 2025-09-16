@@ -11,7 +11,7 @@ WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
 
 # Set environment variables
-ENV PORT=${PORT}
+ENV PORT=8080
 # Optionally, indicate bind address
 ENV SERVER_ADDRESS=0.0.0.0
 
