@@ -1,5 +1,6 @@
 package org.abiram.api.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -12,9 +13,16 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonProperty("fname")
     private String fname;
+    
+    @JsonProperty("lname")
     private String lname;
+    
+    @JsonProperty("email")
     private String email;
+    
+    @JsonProperty("phone")
     private String phone;
 
     // Constructors
