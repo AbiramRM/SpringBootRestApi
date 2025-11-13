@@ -1,4 +1,10 @@
 org/abiram/api/model/Person.class
+org/abiram/api/service/PersonService.class
+org/abiram/api/validations/PersonValidate.class
+org/abiram/api/model/Attendance.class
+org/abiram/api/security/WebMvcConfig.class
 org/abiram/api/SpringApi.class
 org/abiram/api/repository/PersonRepository.class
+org/abiram/api/repository/AttendanceRepository.class
 org/abiram/api/controller/PersonController.class
+org/abiram/api/model/AttendanceStatus.class

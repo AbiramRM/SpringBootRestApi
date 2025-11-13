@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: org.abiram.api.controller.PersonControllerTest
 -------------------------------------------------------------------------------
-Tests run: 15, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.907 s -- in org.abiram.api.controller.PersonControllerTest
+Tests run: 22, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.962 s -- in org.abiram.api.controller.PersonControllerTest

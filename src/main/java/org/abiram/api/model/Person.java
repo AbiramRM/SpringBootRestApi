@@ -1,10 +1,12 @@
 package org.abiram.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import lombok.Data;
 
-@Data
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "persons")
 public class Person {
@@ -25,6 +27,10 @@ public class Person {
     @JsonProperty("phone")
     private String phone;
 
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<Attendance> attendances = new ArrayList<>();
+    
     // Constructors
     public Person() {}
 
@@ -33,5 +39,43 @@ public class Person {
         this.lname = lname;
         this.email = email;
         this.phone = phone;
+    }
+    
+    // Manual setters
+    public void setFname(String fname) {
+        this.fname = fname;
+    }
+    
+    public void setLname(String lname) {
+        this.lname = lname;
+    }
+    
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+    
+    // Manual getters
+    public Long getId() {
+        return id;
+    }
+    
+    public String getFname() {
+        return fname;
+    }
+    
+    public String getLname() {
+        return lname;
+    }
+    
+    public String getEmail() {
+        return email;
+    }
+    
+    public String getPhone() {
+        return phone;
     }
 }
